@@ -23,7 +23,6 @@ export class CreateUserUseCase implements IUseCase<InputCreateUserDto, OutputCre
 
   async exec(input: InputCreateUserDto): Promise<OutputCreateUserDto> {
     try {
-      console.log({ input })
       const encryptPassword = await this.encrypt.encrypt(input.password)
 
       if (encryptPassword.isLeft()) {

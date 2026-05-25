@@ -53,7 +53,9 @@ export class LoginUseCase implements IUseCase<InputLoginDto, OutputLoginDto> {
         return left(token.value)
       }
 
-      return right({ user, token: token.value })
+      const { password: _password, ...userWithoutPassword } = user
+
+      return right({ user: userWithoutPassword, token: token.value })
     } catch (error) {
       this.log.error(error)
       return left(loginFailed)

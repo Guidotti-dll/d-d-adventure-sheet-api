@@ -7,6 +7,7 @@ import { InputFindUser } from '@controller/serializers/users/findUserSerializer'
 import { Permissions } from '@framework/utility/permissions'
 import { mapBusinessErrorToStatus } from '@framework/http/utils/mapBusinessErrorToStatus'
 import { sanitizeUser } from '@framework/http/utils/sanitizeUser'
+import { authenticate } from '@framework/http/middleware/authenticate'
 import { requirePermissions } from '@framework/http/middleware/requirePermissions'
 
 const router = Router()
@@ -22,11 +23,8 @@ router.post(
   asyncRoute(async (req, res) => {
     const operator = await container.getAsync(CreateUserOperator)
 
-    console.log({ input: req.body })
-
     const input = new InputCreateUser(req.body)
 
-    console.log({ input })
     const result = await operator.exec(input)
 
     if (result.isLeft()) {
@@ -41,6 +39,7 @@ router.post(
 
 router.get(
   '/:id',
+  authenticate,
   requirePermissions(Permissions.readPeople),
   asyncRoute(async (req, res) => {
     const operator = await container.getAsync(FindUserOperator)

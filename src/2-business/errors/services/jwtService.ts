@@ -11,3 +11,15 @@ export const JwtGenerationFailed: IError = {
   message: 'JWT generation failed',
   shortMessage: 'jwtGenerationFailed',
 }
+
+export const JwtInvalidToken: IError = {
+  code: 'JWT-003',
+  message: 'Invalid JWT token',
+  shortMessage: 'jwtInvalidToken',
+}
+
+export const JwtExpiredToken: IError = {
+  code: 'JWT-004',
+  message: 'JWT token has expired',
+  shortMessage: 'jwtExpiredToken',
+}

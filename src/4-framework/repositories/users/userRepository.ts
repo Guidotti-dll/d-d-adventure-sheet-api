@@ -25,8 +25,6 @@ export class UserRepository implements IUserRepository {
   async create(userEntity: IUserEntity, trx?: DbTransaction): Promise<IUserEntity> {
     const repository = trx ? await trx.getRepository(UserModel) : this.userRepository
 
-    console.log({ userEntity })
-
     const user = repository.create({
       id: userEntity.id,
       name: userEntity.name,

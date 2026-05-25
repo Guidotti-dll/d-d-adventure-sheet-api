@@ -9,6 +9,8 @@ import {
   IDbTransactionRepositoryToken,
 } from '@business/repositories/dbTransaction/iDbTransactionRepository'
 import { dbTransactionRepositoryMock } from '@test/utility/mocks/repositories/dbTransactionRepository.mock'
+import { type IEncryptService, IEncryptServiceToken } from '@business/services/iEncryptService'
+import { encryptServiceMock } from '@test/utility/mocks/services/encryptService.mock'
 
 describe('2-business.useCases.users.createUser', () => {
   beforeEach(() => {
@@ -21,6 +23,7 @@ describe('2-business.useCases.users.createUser', () => {
 
   container.bind<IUserRepository>(IUserRepositoryToken).toConstantValue(userRepositoryMock)
   container.bind<IDbTransactionRepository>(IDbTransactionRepositoryToken).toConstantValue(dbTransactionRepositoryMock)
+  container.bind<IEncryptService>(IEncryptServiceToken).toConstantValue(encryptServiceMock)
 
   test('create successful', async () => {
     expect.assertions(3)

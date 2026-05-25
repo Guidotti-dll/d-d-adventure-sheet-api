@@ -17,3 +17,9 @@ export const loginFailed: IError = {
   message: 'Login failed',
   shortMessage: 'loginFailed',
 }
+
+export const tokenMissing: IError = {
+  code: 'ATH-004',
+  message: 'Authentication token is required',
+  shortMessage: 'tokenMissing',
+}
