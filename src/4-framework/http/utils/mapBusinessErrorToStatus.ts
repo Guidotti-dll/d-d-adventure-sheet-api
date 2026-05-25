@@ -1,6 +1,6 @@
 import { type IError } from '@domain/common/utility/iError'
 import * as domainUserErrors from '@domain/errors/user'
-import * as userErrors from '@business/module/errors/users/user'
+import * as userErrors from '@business/errors/users/user'
 
 const byShortMessage: Record<string, number> = {
   [userErrors.userNotExist.shortMessage]: 404,

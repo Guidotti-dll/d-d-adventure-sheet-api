@@ -1,20 +1,21 @@
-version: '3'
-
-networks:
-  luby_projects:
-    external: true
+version: '3.9'
 
 services:
   postgres:
     image: postgres
-    container_name: 'postgres'
+    container_name: d_d_adventure_sheet
+    restart: always
+
     environment:
-      POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
     ports:
-      - ${DB_PORT}:5432
+      - '${DB_PORT}:5432'
+
     volumes:
-      - .docker/db:/var/lib/postgresql/data
-    networks:
-      - d_d_adventure_sheet
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

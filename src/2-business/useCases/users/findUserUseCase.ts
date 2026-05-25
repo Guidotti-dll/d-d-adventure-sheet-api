@@ -2,8 +2,8 @@ import { injectable, inject } from 'inversify'
 import { type IUseCase } from '@domain/common/useCases/iUseCase'
 import { left, right } from '@domain/common/utility/either'
 import { type IUserRepository, IUserRepositoryToken } from '@business/repositories/users/iUserRepository'
-import { type InputFindUserDto, type OutputFindUserDto } from '@business/dto/users/userDto'
-import { userNotExist } from '@business/module/errors/users/user'
+import { type InputFindUserDto, type OutputFindUserDto } from '@business/dto/users/findUserDto'
+import { userNotExist } from '@business/errors/users/user'
 
 @injectable()
 export class FindUserUseCase implements IUseCase<InputFindUserDto, OutputFindUserDto> {

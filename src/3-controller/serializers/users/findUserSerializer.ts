@@ -7,7 +7,7 @@ import { IsNotEmpty, IsNumber } from 'class-validator'
 export class InputFindUser extends Validatable<InputFindUser> {
   @IsNotEmpty()
   @IsNumber()
-  userId!: number
+  userId!: string
 }
 
 export type OutputFindUser = Either<IError, IUserEntity>

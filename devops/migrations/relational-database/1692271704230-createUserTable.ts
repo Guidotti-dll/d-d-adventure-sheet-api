@@ -1,4 +1,4 @@
-import { UserTypes } from '@domain/entities/users/userEntity'
+import { UserStatus, UserTypes } from '@domain/entities/users/userEntity'
 import { type MigrationInterface, type QueryRunner, Table } from 'typeorm'
 
 export class CreateUserTable1692271704230 implements MigrationInterface {
@@ -9,10 +9,8 @@ export class CreateUserTable1692271704230 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'uuid ',
             isPrimary: true,
-            generationStrategy: 'increment',
-            isGenerated: true,
           },
           {
             name: 'name',
@@ -36,6 +34,11 @@ export class CreateUserTable1692271704230 implements MigrationInterface {
             name: 'type',
             type: 'enum',
             enum: [UserTypes.USER, UserTypes.ADMIN],
+          },
+          {
+            name: 'status',
+            type: 'enum',
+            enum: [UserStatus.ACTIVE, UserStatus.INACTIVE],
           },
           {
             name: 'created_at',

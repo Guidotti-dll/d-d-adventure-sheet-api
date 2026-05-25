@@ -19,7 +19,7 @@ describe('2-business.useCases.users.findUser', () => {
     expect.assertions(3)
     const useCase = container.get(FindUserUseCase)
     const result = await useCase.exec({
-      userId: 1,
+      userId: 'user-id',
     })
     expect(result.isRight()).toBeTruthy()
     expect(result.isLeft()).toBeFalsy()

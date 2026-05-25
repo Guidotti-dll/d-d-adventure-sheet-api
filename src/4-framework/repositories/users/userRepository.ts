@@ -11,7 +11,7 @@ import { TypeormPagination } from '@framework/utility/typeorm/typeormPagination'
 export class UserRepository implements IUserRepository {
   public constructor(@inject('UserModel') private userRepository: Repository<UserModel>) {}
 
-  async findUserById(userId: number): Promise<IUserEntity | null> {
+  async findUserById(userId: string): Promise<IUserEntity | null> {
     const where = {
       id: userId,
     }
@@ -21,10 +21,14 @@ export class UserRepository implements IUserRepository {
   async create(userEntity: IUserEntity, trx?: DbTransaction): Promise<IUserEntity> {
     const repository = trx ? await trx.getRepository(UserModel) : this.userRepository
 
+    console.log({ userEntity })
+
     const user = repository.create({
+      id: userEntity.id,
       name: userEntity.name,
       email: userEntity.email,
       type: userEntity.type,
+      status: userEntity.status,
       password: userEntity.password,
     })
 

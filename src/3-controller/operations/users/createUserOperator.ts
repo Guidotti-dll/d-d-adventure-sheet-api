@@ -14,7 +14,6 @@ export class CreateUserOperator extends AbstractOperator<InputCreateUser, Output
       name: input.name,
       email: input.email,
       password: input.password,
-      type: input.type,
     })
   }
 }

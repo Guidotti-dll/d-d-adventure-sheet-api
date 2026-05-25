@@ -21,7 +21,12 @@ router.post(
   '/',
   asyncRoute(async (req, res) => {
     const operator = await container.getAsync(CreateUserOperator)
-    const input = new InputCreateUser(req.body as Record<string, unknown>)
+
+    console.log({ input: req.body })
+
+    const input = new InputCreateUser(req.body)
+
+    console.log({ input })
     const result = await operator.exec(input)
 
     if (result.isLeft()) {
@@ -39,7 +44,7 @@ router.get(
   requirePermissions(Permissions.readPeople),
   asyncRoute(async (req, res) => {
     const operator = await container.getAsync(FindUserOperator)
-    const userId = Number(req.params.id)
+    const userId = String(req.params.id)
     if (Number.isNaN(userId)) {
       res.status(400).json({ message: 'Invalid user id' })
       return

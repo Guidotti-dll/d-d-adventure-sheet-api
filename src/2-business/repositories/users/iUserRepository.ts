@@ -7,6 +7,6 @@ export const IUserRepositoryToken = Symbol.for('IUserRepository')
 export interface IUserRepository {
   create(userEntity: IUserEntity, trx?: IDbTransaction): Promise<IUserEntity>
   update(userEntity: IUserEntity, trx?: IDbTransaction): Promise<IUserEntity>
-  findUserById(userId: number): Promise<IUserEntity | null>
+  findUserById(userId: string): Promise<IUserEntity | null>
   listBy(): Promise<Pagination<IUserEntity>>
 }
