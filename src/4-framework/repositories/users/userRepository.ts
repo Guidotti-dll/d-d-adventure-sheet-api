@@ -18,6 +18,10 @@ export class UserRepository implements IUserRepository {
     return this.userRepository.findOne({ where, transaction: true })
   }
 
+  async findUserByEmail(email: string): Promise<IUserEntity | null> {
+    return this.userRepository.findOne({ where: { email } })
+  }
+
   async create(userEntity: IUserEntity, trx?: DbTransaction): Promise<IUserEntity> {
     const repository = trx ? await trx.getRepository(UserModel) : this.userRepository
 

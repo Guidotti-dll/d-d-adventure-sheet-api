@@ -8,5 +8,6 @@ export interface IUserRepository {
   create(userEntity: IUserEntity, trx?: IDbTransaction): Promise<IUserEntity>
   update(userEntity: IUserEntity, trx?: IDbTransaction): Promise<IUserEntity>
   findUserById(userId: string): Promise<IUserEntity | null>
+  findUserByEmail(email: string): Promise<IUserEntity | null>
   listBy(): Promise<Pagination<IUserEntity>>
 }

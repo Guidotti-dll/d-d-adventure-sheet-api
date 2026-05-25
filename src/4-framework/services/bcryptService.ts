@@ -2,7 +2,7 @@ import { type InputCompare, type IEncryptService } from '@business/services/iEnc
 import { Left, Right, type Either } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
 import { injectable } from 'inversify'
-import { v4 as uuid } from 'uuid'
+import { randomUUID } from 'crypto'
 import bcrypt from 'bcrypt'
 import { ComparePasswordFailed, EncryptPasswordFailed } from '@business/errors/services/encryptService'
 
@@ -11,7 +11,7 @@ export class BcryptService implements IEncryptService {
   private readonly saltRounds = 10
 
   generateUuid(): string {
-    return uuid()
+    return randomUUID()
   }
 
   async encrypt(value: string): Promise<Either<IError, string>> {

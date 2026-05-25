@@ -14,6 +14,8 @@ declare global {
       PRIVATE_API_GATEWAY_URL: string
       PORT: string
       SKIP_PERMISSION_CHECK: string
+      JWT_SECRET: string
+      JWT_EXPIRES_IN: string
     }
   }
 }

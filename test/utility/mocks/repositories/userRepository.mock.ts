@@ -5,6 +5,7 @@ export const userRepositoryMock: jest.Mocked<IUserRepository> = {
   create: jest.fn().mockResolvedValue(fakeUserEntity),
   update: jest.fn().mockResolvedValue(fakeUserEntity),
   findUserById: jest.fn().mockResolvedValue(fakeUserEntity),
+  findUserByEmail: jest.fn().mockResolvedValue(fakeUserEntity),
   listBy: jest.fn().mockResolvedValue({
     items: [fakeUserEntity],
     pagination: {
