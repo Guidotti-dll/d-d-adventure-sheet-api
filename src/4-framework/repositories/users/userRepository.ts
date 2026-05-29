@@ -1,8 +1,8 @@
 import { injectable, inject } from 'inversify'
-import { type IUserRepository } from '@business/repositories/users/iUserRepository'
+import { type InputListUsersParams, type IUserRepository } from '@business/repositories/users/iUserRepository'
 import { UserTypes, type IUserEntity } from '@domain/entities/users/userEntity'
 import { UserModel } from '@framework/models/users/userModel'
-import { type FindOptionsWhere, In, Repository } from 'typeorm'
+import { type FindOptionsWhere, ILike, In, Repository } from 'typeorm'
 import { type DbTransaction } from '@framework/repositories/dbTransaction/dbTransaction'
 import { type Pagination } from '@domain/common/dtos/paginationDto'
 import { TypeormPagination } from '@framework/utility/typeorm/typeormPagination'
@@ -41,18 +41,35 @@ export class UserRepository implements IUserRepository {
   async update(userEntity: IUserEntity, trx?: DbTransaction): Promise<IUserEntity> {
     const repository = trx ? await trx.getRepository(UserModel) : this.userRepository
     await repository.update({ id: userEntity.id }, userEntity)
-    return userEntity
+    const updated = await repository.findOne({ where: { id: userEntity.id } })
+    return updated ?? userEntity
   }
 
-  async listBy(): Promise<Pagination<IUserEntity>> {
+  async delete(userId: string, trx?: DbTransaction): Promise<void> {
+    const repository = trx ? await trx.getRepository(UserModel) : this.userRepository
+    await repository.delete({ id: userId })
+  }
+
+  async listBy(params: InputListUsersParams): Promise<Pagination<IUserEntity>> {
+    const page = params.page ?? 1
+    const limit = params.limit ?? 10
+
     const where: FindOptionsWhere<UserModel> = {
       type: In(Object.values(UserTypes)),
     }
 
+    if (params.name) {
+      where.name = ILike(`%${params.name}%`)
+    }
+
+    if (params.email) {
+      where.email = ILike(`%${params.email}%`)
+    }
+
     const { items, pagination } = await TypeormPagination.getData<IUserEntity, UserModel>({
       repository: this.userRepository,
-      limit: 10,
-      page: 1,
+      limit,
+      page,
       options: { where, order: { createdAt: 'DESC' } },
       serviceName: 'UserRepository',
       usingModel: true,

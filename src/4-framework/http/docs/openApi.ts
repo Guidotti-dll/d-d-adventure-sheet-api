@@ -3,7 +3,7 @@ import { usersPaths } from './paths/users.path'
 
 import { LoginRequestSchema, LoginResponseSchema } from './schemas/auth.schema'
 
-import { UserSchema } from './schemas/users.schema'
+import { UpdateUserSchema, UserListSchema, UserSchema } from './schemas/users.schema'
 
 export const openApiConfig = {
   openapi: '3.0.0',
@@ -38,6 +38,10 @@ export const openApiConfig = {
   components: {
     schemas: {
       User: UserSchema,
+
+      UpdateUserSchema,
+
+      UserListSchema,
 
       LoginRequest: LoginRequestSchema,
 

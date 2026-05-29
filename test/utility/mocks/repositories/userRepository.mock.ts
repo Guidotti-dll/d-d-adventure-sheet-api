@@ -4,6 +4,7 @@ import { fakeUserEntity } from '@test/utility/fakes/entities/fakeUserEntity'
 export const userRepositoryMock: jest.Mocked<IUserRepository> = {
   create: jest.fn().mockResolvedValue(fakeUserEntity),
   update: jest.fn().mockResolvedValue(fakeUserEntity),
+  delete: jest.fn().mockResolvedValue(undefined),
   findUserById: jest.fn().mockResolvedValue(fakeUserEntity),
   findUserByEmail: jest.fn().mockResolvedValue(fakeUserEntity),
   listBy: jest.fn().mockResolvedValue({

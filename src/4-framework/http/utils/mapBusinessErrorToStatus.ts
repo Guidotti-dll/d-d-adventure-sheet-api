@@ -18,6 +18,11 @@ const byShortMessage: Record<string, number> = {
   [encryptErrors.EncryptPasswordFailed.shortMessage]: 500,
   [userErrors.userNotExist.shortMessage]: 404,
   [userErrors.UserCreationFailed.shortMessage]: 500,
+  [userErrors.UserUpdateFailed.shortMessage]: 500,
+  [userErrors.UserDeletionFailed.shortMessage]: 500,
+  [userErrors.UserListingFailed.shortMessage]: 500,
+  [userErrors.emailAlreadyInUse.shortMessage]: 409,
+  [userErrors.noFieldsToUpdate.shortMessage]: 400,
   [domainUserErrors.invalidEmailDomainError.shortMessage]: 400,
 }
 
