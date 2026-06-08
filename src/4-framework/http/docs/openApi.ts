@@ -1,7 +1,13 @@
 import { authPaths } from './paths/auth.path'
 import { usersPaths } from './paths/users.path'
 
-import { LoginRequestSchema, LoginResponseSchema } from './schemas/auth.schema'
+import {
+  ForgotPasswordRequestSchema,
+  LoginRequestSchema,
+  LoginResponseSchema,
+  BooleanResponseSchema,
+  ResetPasswordRequestSchema,
+} from './schemas/auth.schema'
 
 import { UpdateUserSchema, UserListSchema, UserSchema } from './schemas/users.schema'
 
@@ -46,6 +52,12 @@ export const openApiConfig = {
       LoginRequest: LoginRequestSchema,
 
       LoginResponse: LoginResponseSchema,
+
+      ForgotPasswordRequest: ForgotPasswordRequestSchema,
+
+      ResetPasswordRequest: ResetPasswordRequestSchema,
+
+      BooleanResponse: BooleanResponseSchema,
     },
 
     securitySchemes: {

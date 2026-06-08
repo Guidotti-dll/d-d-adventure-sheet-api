@@ -23,3 +23,37 @@ export const LoginResponseSchema = {
     },
   },
 }
+
+export const ForgotPasswordRequestSchema = {
+  type: 'object',
+
+  required: ['email'],
+
+  properties: {
+    email: {
+      type: 'string',
+      format: 'email',
+    },
+  },
+}
+
+export const ResetPasswordRequestSchema = {
+  type: 'object',
+
+  required: ['token', 'password'],
+
+  properties: {
+    token: {
+      type: 'string',
+    },
+
+    password: {
+      type: 'string',
+      minLength: 6,
+    },
+  },
+}
+
+export const BooleanResponseSchema = {
+  type: 'boolean',
+}

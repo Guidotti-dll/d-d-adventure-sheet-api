@@ -1,6 +1,7 @@
 import { type IError } from '@domain/common/utility/iError'
 import * as domainUserErrors from '@domain/errors/user'
 import * as authErrors from '@business/errors/auth/auth'
+import * as passwordRecoveryErrors from '@business/errors/auth/passwordRecovery'
 import * as jwtErrors from '@business/errors/services/jwtService'
 import * as encryptErrors from '@business/errors/services/encryptService'
 import * as userErrors from '@business/errors/users/user'
@@ -10,6 +11,11 @@ const byShortMessage: Record<string, number> = {
   [authErrors.userInactive.shortMessage]: 403,
   [authErrors.loginFailed.shortMessage]: 500,
   [authErrors.tokenMissing.shortMessage]: 401,
+  [passwordRecoveryErrors.passwordRecoveryRequestFailed.shortMessage]: 500,
+  [passwordRecoveryErrors.passwordResetFailed.shortMessage]: 500,
+  [passwordRecoveryErrors.invalidRecoveryToken.shortMessage]: 400,
+  [passwordRecoveryErrors.recoveryTokenExpired.shortMessage]: 400,
+  [passwordRecoveryErrors.recoveryTokenAlreadyUsed.shortMessage]: 400,
   [jwtErrors.JwtSecretNotConfigured.shortMessage]: 500,
   [jwtErrors.JwtGenerationFailed.shortMessage]: 500,
   [jwtErrors.JwtInvalidToken.shortMessage]: 401,

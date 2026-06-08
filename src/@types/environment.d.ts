@@ -16,6 +16,8 @@ declare global {
       SKIP_PERMISSION_CHECK: string
       JWT_SECRET: string
       JWT_EXPIRES_IN: string
+      PASSWORD_RECOVERY_TOKEN_EXPIRES_IN_HOURS: string
+      PASSWORD_RECOVERY_URL: string
     }
   }
 }

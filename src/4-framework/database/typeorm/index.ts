@@ -1,3 +1,4 @@
+import { PasswordRecoveryTokenModel } from '@framework/models/auth/passwordRecoveryTokenModel'
 import { UserModel } from '@framework/models/users/userModel'
 import 'dotenv/config'
 import { DataSource, type DataSourceOptions } from 'typeorm'
@@ -32,7 +33,7 @@ if (readerHost) {
 
 export const dataSourceConfig: DataSourceOptions = {
   type: 'postgres',
-  entities: [UserModel],
+  entities: [UserModel, PasswordRecoveryTokenModel],
   host: masterHost,
   replication: {
     master, // Write queries
