@@ -44,7 +44,7 @@ export class SubRaceEntity extends AbstractEntity<ISubRace> {
   removeTrait(traitId: string): SubRaceEntity {
     return new SubRaceEntity({
       ...this.props,
-      traitIds: this.props.traitIds.filter((id) => id !== traitId),
+      traitIds: this.props.traitIds.filter(id => id !== traitId),
       updatedAt: new Date(),
     })
   }

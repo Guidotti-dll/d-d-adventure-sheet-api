@@ -47,7 +47,7 @@ export class ClassEntity extends AbstractEntity<IClass> {
   removeFeature(featureId: string): ClassEntity {
     return new ClassEntity({
       ...this.props,
-      featureIds: this.props.featureIds.filter((id) => id !== featureId),
+      featureIds: this.props.featureIds.filter(id => id !== featureId),
       updatedAt: new Date(),
     })
   }

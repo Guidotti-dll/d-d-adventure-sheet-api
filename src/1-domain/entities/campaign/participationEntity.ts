@@ -16,10 +16,7 @@ export interface IParticipation {
   updatedAt: Date
 }
 
-type InputCreateParticipation = Optional<
-  IParticipation,
-  'leftAt' | 'active' | 'status' | 'createdAt' | 'updatedAt'
->
+type InputCreateParticipation = Optional<IParticipation, 'leftAt' | 'active' | 'status' | 'createdAt' | 'updatedAt'>
 
 export class ParticipationEntity extends AbstractEntity<IParticipation> {
   static create(props: InputCreateParticipation): Either<IError, ParticipationEntity> {

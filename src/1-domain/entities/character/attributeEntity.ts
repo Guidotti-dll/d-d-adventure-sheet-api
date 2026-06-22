@@ -1,7 +1,7 @@
 import { AbstractEntity } from '@domain/common/entities/abstractEntity'
 import { type Either, right } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
-import { AttributeEnum } from '@domain/entities/shared/enums'
+import { type AttributeEnum } from '@domain/entities/shared/enums'
 
 export interface IAttributeValue {
   score: number

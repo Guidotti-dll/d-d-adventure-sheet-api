@@ -17,10 +17,7 @@ export interface ICampaign {
   createdAt: Date
 }
 
-type InputCreateCampaign = Optional<
-  ICampaign,
-  'visibility' | 'status' | 'startedAt' | 'createdAt' | 'updatedAt'
->
+type InputCreateCampaign = Optional<ICampaign, 'visibility' | 'status' | 'startedAt' | 'createdAt' | 'updatedAt'>
 
 export class CampaignEntity extends AbstractEntity<ICampaign> {
   static create(props: InputCreateCampaign): Either<IError, CampaignEntity> {

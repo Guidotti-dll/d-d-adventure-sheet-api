@@ -2,7 +2,7 @@ import { AbstractEntity } from '@domain/common/entities/abstractEntity'
 import { type Either, right } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
 import { type Optional } from '@domain/common/utility/utilityTypes'
-import { SchoolEnum, StatusEnum } from '@domain/entities/shared/enums'
+import { type SchoolEnum, StatusEnum } from '@domain/entities/shared/enums'
 
 export interface ISpell {
   id: string
@@ -21,10 +21,7 @@ export interface ISpell {
   updatedAt: Date
 }
 
-type InputCreateSpell = Optional<
-  ISpell,
-  'ritual' | 'concentration' | 'status' | 'createdAt' | 'updatedAt'
->
+type InputCreateSpell = Optional<ISpell, 'ritual' | 'concentration' | 'status' | 'createdAt' | 'updatedAt'>
 
 export class SpellEntity extends AbstractEntity<ISpell> {
   static create(props: InputCreateSpell): Either<IError, SpellEntity> {

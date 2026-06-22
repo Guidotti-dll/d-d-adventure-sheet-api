@@ -2,7 +2,7 @@ import { AbstractEntity } from '@domain/common/entities/abstractEntity'
 import { type Either, right } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
 import { type Optional } from '@domain/common/utility/utilityTypes'
-import { ItemTypeEnum, StatusEnum } from '@domain/entities/shared/enums'
+import { type ItemTypeEnum, StatusEnum } from '@domain/entities/shared/enums'
 
 export interface IItem {
   id: string
@@ -19,10 +19,7 @@ export interface IItem {
   updatedAt: Date
 }
 
-type InputCreateItem = Optional<
-  IItem,
-  'properties' | 'requiresAttunement' | 'status' | 'createdAt' | 'updatedAt'
->
+type InputCreateItem = Optional<IItem, 'properties' | 'requiresAttunement' | 'status' | 'createdAt' | 'updatedAt'>
 
 export class ItemEntity extends AbstractEntity<IItem> {
   static create(props: InputCreateItem): Either<IError, ItemEntity> {

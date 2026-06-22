@@ -1,7 +1,7 @@
 import { AbstractEntity } from '@domain/common/entities/abstractEntity'
 import { type Either, right } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
-import { ItemTypeEnum, StatusEnum } from '@domain/entities/shared/enums'
+import { type ItemTypeEnum, StatusEnum } from '@domain/entities/shared/enums'
 import { type Optional } from '@domain/common/utility/utilityTypes'
 
 export interface IInventoryItem {

@@ -2,7 +2,7 @@ import { AbstractEntity } from '@domain/common/entities/abstractEntity'
 import { type Either, right } from '@domain/common/utility/either'
 import { type IError } from '@domain/common/utility/iError'
 import { type Optional } from '@domain/common/utility/utilityTypes'
-import { EncounterTypeEnum, DifficultyEnum, StatusEnum } from '@domain/entities/shared/enums'
+import { type EncounterTypeEnum, type DifficultyEnum, StatusEnum } from '@domain/entities/shared/enums'
 
 export interface IEncounter {
   id: string
@@ -19,10 +19,7 @@ export interface IEncounter {
   updatedAt: Date
 }
 
-type InputCreateEncounter = Optional<
-  IEncounter,
-  'participantIds' | 'completed' | 'status' | 'createdAt' | 'updatedAt'
->
+type InputCreateEncounter = Optional<IEncounter, 'participantIds' | 'completed' | 'status' | 'createdAt' | 'updatedAt'>
 
 export class EncounterEntity extends AbstractEntity<IEncounter> {
   static create(props: InputCreateEncounter): Either<IError, EncounterEntity> {
@@ -52,7 +49,7 @@ export class EncounterEntity extends AbstractEntity<IEncounter> {
   removeParticipant(characterId: string): EncounterEntity {
     return new EncounterEntity({
       ...this.props,
-      participantIds: this.props.participantIds.filter((id) => id !== characterId),
+      participantIds: this.props.participantIds.filter(id => id !== characterId),
       updatedAt: new Date(),
     })
   }

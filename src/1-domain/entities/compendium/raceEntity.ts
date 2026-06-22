@@ -39,6 +39,6 @@ export class RaceEntity extends AbstractEntity<IRace> {
   }
 
   getBonusForAttribute(attribute: string): number {
-    return this.props.racialBonuses.find((b) => b.attribute === attribute)?.bonus ?? 0
+    return this.props.racialBonuses.find(b => b.attribute === attribute)?.bonus ?? 0
   }
 }

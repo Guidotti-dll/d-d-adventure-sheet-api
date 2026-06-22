@@ -54,13 +54,13 @@ export class SpellbookEntity extends AbstractEntity<ISpellbook> {
   removeSpell(spellId: string): SpellbookEntity {
     return new SpellbookEntity({
       ...this.props,
-      spells: this.props.spells.filter((s) => s.id !== spellId),
-      cantrips: this.props.cantrips.filter((s) => s.id !== spellId),
+      spells: this.props.spells.filter(s => s.id !== spellId),
+      cantrips: this.props.cantrips.filter(s => s.id !== spellId),
       updatedAt: new Date(),
     })
   }
 
   getSpellsByLevel(level: number): ISpellbookEntry[] {
-    return level === 0 ? this.props.cantrips : this.props.spells.filter((s) => s.level === level)
+    return level === 0 ? this.props.cantrips : this.props.spells.filter(s => s.level === level)
   }
 }
