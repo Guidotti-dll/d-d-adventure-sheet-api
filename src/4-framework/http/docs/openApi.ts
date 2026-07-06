@@ -1,5 +1,6 @@
 import { authPaths } from './paths/auth.path'
 import { usersPaths } from './paths/users.path'
+import { campaignsPaths } from './paths/campaigns.path'
 
 import {
   ForgotPasswordRequestSchema,
@@ -10,6 +11,7 @@ import {
 } from './schemas/auth.schema'
 
 import { UpdateUserSchema, UserListSchema, UserSchema } from './schemas/users.schema'
+import { CampaignSchema, CreateCampaignSchema, CampaignListSchema } from './schemas/campaigns.schema'
 
 export const openApiConfig = {
   openapi: '3.0.0',
@@ -34,11 +36,16 @@ export const openApiConfig = {
     {
       name: 'Users',
     },
+
+    {
+      name: 'Campaign',
+    },
   ],
 
   paths: {
     ...authPaths,
     ...usersPaths,
+    ...campaignsPaths,
   },
 
   components: {
@@ -48,6 +55,12 @@ export const openApiConfig = {
       UpdateUserSchema,
 
       UserListSchema,
+
+      CampaignSchema,
+
+      CreateCampaignSchema,
+
+      CampaignListSchema,
 
       LoginRequest: LoginRequestSchema,
 

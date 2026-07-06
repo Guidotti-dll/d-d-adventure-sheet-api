@@ -7,6 +7,11 @@ import { DeleteUserOperator } from '@controller/operations/users/deleteUserOpera
 import { FindUserOperator } from '@controller/operations/users/findUserOperator'
 import { ListUsersOperator } from '@controller/operations/users/listUsersOperator'
 import { UpdateUserOperator } from '@controller/operations/users/updateUserOperator'
+import { CreateCampaignOperator } from '@controller/operations/campaign/createCampaignOperator'
+import { DeleteCampaignOperator } from '@controller/operations/campaign/deleteCampaignOperator'
+import { FindCampaignOperator } from '@controller/operations/campaign/findCampaignOperator'
+import { ListCampaignsOperator } from '@controller/operations/campaign/listCampaignsOperator'
+import { UpdateCampaignOperator } from '@controller/operations/campaign/updateCampaignOperator'
 
 export const OperatorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(LoginOperator).toSelf()
@@ -17,4 +22,9 @@ export const OperatorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(FindUserOperator).toSelf()
   bind(ListUsersOperator).toSelf()
   bind(UpdateUserOperator).toSelf()
+  bind(CreateCampaignOperator).toSelf()
+  bind(DeleteCampaignOperator).toSelf()
+  bind(FindCampaignOperator).toSelf()
+  bind(ListCampaignsOperator).toSelf()
+  bind(UpdateCampaignOperator).toSelf()
 })

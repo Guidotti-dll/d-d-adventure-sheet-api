@@ -2,7 +2,9 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "lib": ["ES2019"],
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "ignoreDeprecations": "6.0",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
@@ -17,7 +19,8 @@
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,
@@ -25,6 +28,23 @@
     "doTypeCheck": true,
     "forkChecker": true
   },
-  "include": ["src/**/*.ts","devops/migrations/relational-database/*.ts","devops/*.ts", "test"],
-  "exclude": ["node_modules/**/*", ".serverless/**/*", ".webpack/**/*", "_warmup/**/*", ".vscode/**/*"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "devops/migrations/relational-database/*.ts",
+    "devops/*.ts",
+    "test"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".webpack/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*",
+    "node_modules",
+    "dist",
+    "build",
+    "coverage"
+  ]
 }

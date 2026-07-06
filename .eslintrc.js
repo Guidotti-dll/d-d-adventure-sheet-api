@@ -7,7 +7,7 @@ module.exports = {
     jest: true,
   },
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['./tsconfig.json'],
   },
   settings: {
     'import/parsers': {
