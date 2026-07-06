@@ -1,4 +1,4 @@
-import { OutputFindCampaignDto } from '@business/dto/campaigns/findCampaignDto'
+import { type OutputFindCampaignDto } from '@business/dto/campaigns/findCampaignDto'
 import { Validatable } from '@domain/common/serializers/abstractValidatable'
 import { CampaignStatusEnum } from '@domain/entities'
 import { IsEnum, IsOptional, IsString } from 'class-validator'
