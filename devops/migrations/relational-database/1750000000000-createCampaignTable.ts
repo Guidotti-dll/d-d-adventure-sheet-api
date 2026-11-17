@@ -12,7 +12,6 @@ export class CreateCampaignTable1750000000000 implements MigrationInterface {
           { name: 'dungeon_master_id', type: 'uuid' },
           { name: 'name', type: 'varchar', length: '200' },
           { name: 'description', type: 'text', isNullable: true },
-          { name: 'setting', type: 'varchar', length: '200', isNullable: true },
           {
             name: 'status',
             type: 'enum',
@@ -24,6 +23,7 @@ export class CreateCampaignTable1750000000000 implements MigrationInterface {
               CampaignStatusEnum.CANCELLED,
             ],
           },
+          { name: 'started_level', type: 'int', isNullable: false, default: 1 },
           { name: 'visibility', type: 'enum', enum: [StatusEnum.ACTIVE, StatusEnum.INACTIVE, StatusEnum.DELETED] },
           { name: 'started_at', type: 'timestamp', isNullable: true },
           { name: 'created_at', type: 'timestamp', default: 'now()' },

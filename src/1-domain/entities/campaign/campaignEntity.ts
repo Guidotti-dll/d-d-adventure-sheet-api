@@ -9,7 +9,6 @@ export interface ICampaign {
   dungeonMasterId: string
   name: string
   description: string
-  setting: string
   status: CampaignStatusEnum
   visibility: StatusEnum
   startedAt: Date

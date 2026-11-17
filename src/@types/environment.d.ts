@@ -18,6 +18,9 @@ declare global {
       JWT_EXPIRES_IN: string
       PASSWORD_RECOVERY_TOKEN_EXPIRES_IN_HOURS: string
       PASSWORD_RECOVERY_URL: string
+      FRONTEND_URL: string
+      RESEND_API_KEY: string
+      EMAIL_FROM: string
     }
   }
 }

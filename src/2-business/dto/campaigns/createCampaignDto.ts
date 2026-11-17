@@ -6,8 +6,13 @@ export interface InputCreateCampaignDto {
   dungeonMasterId: string
   name: string
   description?: string
-  setting?: string
+  emails?: string[]
   resolve?(campaign: ICampaign): Promise<Either<IError, void>>
 }
 
-export type OutputCreateCampaignDto = Either<IError, ICampaign>
+export interface CreatedCampaign {
+  campaign: ICampaign
+  joinLink: string
+}
+
+export type OutputCreateCampaignDto = Either<IError, CreatedCampaign>

@@ -12,7 +12,13 @@ export const campaignsPaths = {
           description: 'Campanha criada',
           content: {
             'application/json': {
-              schema: { type: 'object', properties: { campaign: { $ref: '#/components/schemas/CampaignSchema' } } },
+              schema: {
+                type: 'object',
+                properties: {
+                  campaign: { $ref: '#/components/schemas/CampaignSchema' },
+                  joinLink: { type: 'string', format: 'uri' },
+                },
+              },
             },
           },
         },

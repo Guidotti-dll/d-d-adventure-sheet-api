@@ -26,7 +26,6 @@ export class CampaignRepository implements ICampaignRepository {
       dungeonMasterId: campaign.dungeonMasterId,
       name: campaign.name,
       description: campaign.description,
-      setting: campaign.setting,
       status: campaign.status,
       visibility: campaign.visibility,
     })

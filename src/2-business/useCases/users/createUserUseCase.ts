@@ -11,6 +11,7 @@ import {
   IDbTransactionRepositoryToken,
 } from '@business/repositories/dbTransaction/iDbTransactionRepository'
 import { IEncryptService, IEncryptServiceToken } from '@business/services/iEncryptService'
+import { IEmailService, IEmailServiceToken } from '@business/services/iEmailService'
 
 @injectable()
 export class CreateUserUseCase implements IUseCase<InputCreateUserDto, OutputCreateUserDto> {
@@ -18,7 +19,8 @@ export class CreateUserUseCase implements IUseCase<InputCreateUserDto, OutputCre
     @inject(IUserRepositoryToken) private userRepository: IUserRepository,
     @inject(IDbTransactionRepositoryToken) private dbTransactionRepository: IDbTransactionRepository,
     @inject(ILoggerServiceToken) private log: ILoggerService,
-    @inject(IEncryptServiceToken) private encrypt: IEncryptService
+    @inject(IEncryptServiceToken) private encrypt: IEncryptService,
+    @inject(IEmailServiceToken) private emailService: IEmailService
   ) {}
 
   async exec(input: InputCreateUserDto): Promise<OutputCreateUserDto> {
@@ -46,6 +48,22 @@ export class CreateUserUseCase implements IUseCase<InputCreateUserDto, OutputCre
       const trx = await this.dbTransactionRepository.startTransaction()
       const user = await this.userRepository.create(userEntity.value.export(), trx)
       await trx.commit()
+
+      const frontendUrl = (
+        (process.env.FRONTEND_URL ?? 'http://localhost:3000').split(',')[0] ?? 'http://localhost:3000'
+      )
+        .trim()
+        .replace(/\/$/, '')
+      const confirmationLink = `${frontendUrl}/auth/confirm-account?userId=${encodeURIComponent(user.id)}`
+      const emailResult = await this.emailService.sendAccountConfirmationEmail({
+        email: user.email,
+        name: user.name,
+        confirmationLink,
+      })
+
+      if (emailResult.isLeft()) {
+        this.log.error(emailResult.value)
+      }
 
       return right(user)
     } catch (error) {

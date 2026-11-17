@@ -5,11 +5,13 @@ import listEndpoints from 'express-list-endpoints'
 
 // import { swaggerSpec } from './docs/swagger'
 import { openApiConfig } from './docs/openApi'
+import { cors } from './middleware/cors'
 
 export function createExpressApp(): Express {
   const app = express()
 
   app.disable('x-powered-by')
+  app.use(cors)
   app.use(express.json())
 
   app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction): void => {

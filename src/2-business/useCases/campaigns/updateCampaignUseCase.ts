@@ -23,7 +23,6 @@ export class UpdateCampaignUseCase implements IUseCase<InputUpdateCampaignDto, O
         ...campaign,
         name: input.name ?? campaign.name,
         description: input.description ?? campaign.description,
-        setting: input.setting ?? campaign.setting,
         status: input.status ?? campaign.status,
       }
       const result = await this.campaignRepository.update(updated)

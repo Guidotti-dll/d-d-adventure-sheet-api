@@ -21,6 +21,7 @@ export const CreateCampaignSchema = {
     name: { type: 'string' },
     description: { type: 'string' },
     setting: { type: 'string' },
+    emails: { type: 'array', items: { type: 'string', format: 'email' } },
   },
   required: ['dungeonMasterId', 'name'],
 }

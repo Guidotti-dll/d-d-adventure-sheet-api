@@ -8,6 +8,21 @@ export interface InputSendPasswordRecoveryEmail {
   token: string
 }
 
+export interface InputSendCampaignInvitationEmail {
+  email: string
+  campaignName: string
+  joinLink: string
+}
+
+export interface InputSendAccountConfirmationEmail {
+  email: string
+  name: string
+  confirmationLink: string
+}
+
 export interface IEmailService {
+  createCampaignJoinLink(campaignId: string): string
   sendPasswordRecoveryEmail(input: InputSendPasswordRecoveryEmail): Promise<Either<IError, void>>
+  sendCampaignInvitationEmail(input: InputSendCampaignInvitationEmail): Promise<Either<IError, void>>
+  sendAccountConfirmationEmail(input: InputSendAccountConfirmationEmail): Promise<Either<IError, void>>
 }

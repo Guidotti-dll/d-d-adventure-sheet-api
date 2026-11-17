@@ -11,6 +11,7 @@ import {
   IDbTransactionRepositoryToken,
 } from '@business/repositories/dbTransaction/iDbTransactionRepository'
 import { CampaignCreationFailed } from '@business/errors/campaign/campaign'
+import { IEmailService, IEmailServiceToken } from '@business/services/iEmailService'
 
 @injectable()
 export class CreateCampaignUseCase implements IUseCase<InputCreateCampaignDto, OutputCreateCampaignDto> {
@@ -18,7 +19,8 @@ export class CreateCampaignUseCase implements IUseCase<InputCreateCampaignDto, O
     @inject(ICampaignRepositoryToken) private campaignRepository: ICampaignRepository,
     @inject(IDbTransactionRepositoryToken) private dbTransactionRepository: IDbTransactionRepository,
     @inject(ILoggerServiceToken) private log: ILoggerService,
-    @inject(IEncryptServiceToken) private encrypt: IEncryptService
+    @inject(IEncryptServiceToken) private encrypt: IEncryptService,
+    @inject(IEmailServiceToken) private emailService: IEmailService
   ) {}
 
   async exec(input: InputCreateCampaignDto): Promise<OutputCreateCampaignDto> {
@@ -30,7 +32,6 @@ export class CreateCampaignUseCase implements IUseCase<InputCreateCampaignDto, O
         dungeonMasterId: input.dungeonMasterId,
         name: input.name,
         description: input.description ?? '',
-        setting: input.setting ?? '',
       })
 
       if (campaignEntity.isLeft()) return left(campaignEntity.value)
@@ -39,7 +40,22 @@ export class CreateCampaignUseCase implements IUseCase<InputCreateCampaignDto, O
       const campaign = await this.campaignRepository.create(campaignEntity.value.export(), trx)
       await trx.commit()
 
-      return right(campaign)
+      const joinLink = this.emailService.createCampaignJoinLink(campaign.id)
+      const emails = [...new Set((input.emails ?? []).map(email => email.trim().toLowerCase()).filter(Boolean))]
+
+      for (const email of emails) {
+        const emailResult = await this.emailService.sendCampaignInvitationEmail({
+          email,
+          campaignName: campaign.name,
+          joinLink,
+        })
+
+        if (emailResult.isLeft()) {
+          this.log.error(emailResult.value)
+        }
+      }
+
+      return right({ campaign, joinLink })
     } catch (error) {
       this.log.error(error)
       return left(CampaignCreationFailed)

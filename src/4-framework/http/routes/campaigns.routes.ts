@@ -40,7 +40,7 @@ router.post(
       res.status(status).json({ error: result.value })
       return
     }
-    res.status(201).json({ campaign: result.value })
+    res.status(201).json(result.value)
   })
 )
 

@@ -1,5 +1,5 @@
 import { Validatable } from '@domain/common/serializers/abstractValidatable'
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
+import { IsArray, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 export class InputCreateCampaign extends Validatable<InputCreateCampaign> {
   @IsString()
@@ -17,4 +17,9 @@ export class InputCreateCampaign extends Validatable<InputCreateCampaign> {
   @IsOptional()
   @IsString()
   setting?: string
+
+  @IsOptional()
+  @IsArray()
+  @IsEmail({}, { each: true })
+  emails?: string[]
 }

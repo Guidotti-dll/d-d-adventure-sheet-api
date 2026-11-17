@@ -14,7 +14,7 @@ export class CreateCampaignOperator extends AbstractOperator<InputCreateCampaign
       dungeonMasterId: input.dungeonMasterId,
       name: input.name,
       description: input.description,
-      setting: input.setting,
+      emails: input.emails,
     })
   }
 }
